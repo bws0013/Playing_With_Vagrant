@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 
 	config.vm.provision :shell, :privileged => true, :path => "installation_scripts/pre_install.sh"
 
-	config.vm.provision "file", source: "support_files/rundeck-config.properties", destination: "/etc/rundeck/"
+	config.vm.provision "file", source: "support_files/rundeck-config.properties", destination: "/tmp/rundeck-config.properties"
 
 	config.vm.provision :shell, :privileged => true, :path => "installation_scripts/post_install.sh"
 
