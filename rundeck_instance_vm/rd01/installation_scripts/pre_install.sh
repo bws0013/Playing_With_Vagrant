@@ -1,9 +1,10 @@
 #/bin/bash
 
-yum install install java-1.8.0 -y
-yum install -y vim-enhanced
+yum install -y epel-release vim-enhanced java-1.8.0 nginx
 
-if [ ! -f /etc/rundeck/rundeck-config.properties ]; 
+# determine if we also need to install bind-utils 
+
+if [ ! -f /etc/rundeck/rundeck-config.properties ];
 then
 	echo "-------- PROVISIONING RUNDECK -----------"
 	echo "-----------------------------------------"
@@ -14,5 +15,3 @@ else
 fi
 
 whoami
-
-
