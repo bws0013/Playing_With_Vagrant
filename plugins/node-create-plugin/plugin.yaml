@@ -1,0 +1,14 @@
+name: node-create-plugin
+version: 1.0.0
+rundeckPluginVersion: 1.0
+author: Ben Smith
+date: Tue Oct 23 2018
+url: https://github.com/bws0013
+providers:
+  - name: create-node
+    title: Create Node
+    description: Create a node or two
+    service: WorkflowNodeStep
+    plugin-type: script
+    script-interpreter: python -u
+    script-file: hello.py
