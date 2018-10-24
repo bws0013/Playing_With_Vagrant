@@ -12,11 +12,38 @@ providers:
     plugin-type: script
     script-interpreter: python -u
     script-file: hello.py
-      config:
-        - name: first_thing
-        title: first
-        description: "first thing"
+    config:
+      - name: node_name
+        title: node_name
+        description: "The plugin will add .yml at the end"
         type: String
-        default: "basic"
         required: true
-        scope: Project
+      - name: hostname
+        title: hostname
+        description: "This will be used to login, enter the ip if there is no hostname"
+        type: String
+        required: true
+      - name: description
+        title: description
+        description: "Required but not particularly important"
+        type: String
+        default: "A node"
+        required: true
+      - name: tags
+        title: tags
+        description: "Split the tags with spaces"
+        type: String
+        default: "Node"
+        required: true
+      # - name: osarch
+      #   title: architecture
+      #   description: "The node architecture"
+      #   type: String
+      #   default: "x86_64"
+      #   required: true
+      # - name: osname
+      #   title: operating_system
+      #   description: "The os of the node"
+      #   type: String
+      #   default: "Linux"
+      #   required: true
