@@ -23,6 +23,12 @@ providers:
         description: "This will be used to login, enter the ip if there is no hostname"
         type: String
         required: true
+      - name: project_name
+        title: project_name
+        description: "Enter the project where this node should go"
+        type: String
+        default: "${job.project}"
+        required: true
       - name: description
         title: description
         description: "Required but not particularly important"
@@ -31,7 +37,7 @@ providers:
         required: true
       - name: tags
         title: tags
-        description: "Split the tags with spaces"
+        description: "Split the tags with commas (no spaces allowed)"
         type: String
         default: "Node"
         required: true
