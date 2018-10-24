@@ -12,3 +12,11 @@ providers:
     plugin-type: script
     script-interpreter: python -u
     script-file: hello.py
+      config:
+        - name: first_thing
+        title: first
+        description: "first thing"
+        type: String
+        default: "basic"
+        required: true
+        scope: Project
