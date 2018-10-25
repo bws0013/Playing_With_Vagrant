@@ -12,7 +12,7 @@ providers:
     plugin-type: script
     script-interpreter: python -u
     script-file: hello.py
-    script-args: -n ${config.node_name} -o ${config.hostname} -p ${config.project_name} -d ${config.description} -t ${config.tags}
+    script-args: -n ${config.node_name} -o ${config.hostname} -u ${config.username} -p ${config.project_name} -d ${config.description} -t ${config.tags}
     config:
       - name: node_name
         title: node_name
@@ -24,9 +24,15 @@ providers:
         description: "This will be used to login, enter the ip if there is no hostname"
         type: String
         required: true
+      - name: username
+        title: username
+        description: "Provide a user to login as (default is root)"
+        type: String
+        default: "root"
+        required: true
       - name: project_name
         title: project_name
-        description: "Enter the project where this node should go"
+        description: "Enter the project of the node (default is current project)"
         type: String
         default: "${job.project}"
         required: true
@@ -41,6 +47,13 @@ providers:
         description: "Split the tags with commas (no spaces allowed)"
         type: String
         default: "Node"
+        required: true
+      - name: overwrite
+        title: overwrite
+        description: "Overwrite node with same name"
+        type: Select
+        values: "true, false"
+        default: "false"
         required: true
       # - name: osarch
       #   title: architecture

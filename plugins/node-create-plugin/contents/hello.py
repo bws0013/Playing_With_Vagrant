@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 parser = argparse.ArgumentParser(description='Create a node')
 # parser.add_argument('integers', metavar='N', type=int, nargs='+',
@@ -9,10 +10,16 @@ parser.add_argument("--project", "-p", help="Provide the hostname or ip of a nod
 parser.add_argument("--path", "-a", help="(optional) Provide the path of your node resource directory")
 parser.add_argument("--description", "-d", help="(optional) Provide a node description")
 parser.add_argument("--tags", "-t", help="(optional) Provide a comma separated list of tags (enter no spaces in the tag list)")
+parser.add_argument("--username", "-u", help="(optional) Provide a user to login as (default is root)")
+parser.add_argument("--overwrite", "-v", help="(true/false) Overwrite existing node with same name (default: false)")
+
 
 args = parser.parse_args()
 
-hostname = node_name = project = description = tags = None
+hostname = node_name = project = path = None
+description = tags = username = overwrite = None
+
+# print args.overwrite
 
 if args.hostname:
     hostname = args.hostname
@@ -21,7 +28,10 @@ if args.node_name:
 if args.project:
     project = args.project
 
-if not args.hostname or not args.node_name or not args.project:
-    print("Hostname, Node name and Project name are required, use -h for help")
-else:
-    print("hostname: %s, node name: %s, project name: %s" % (hostname, node_name, project))
+if not args.hostname or not args.node_name or not args.project or not args.overwrite:
+    print("Hostname, Node name, Project name and Overwrite status are required, use -h for help")
+    sys.exit(1)
+
+
+# else:
+#     print("hostname: %s, node name: %s, project name: %s" % (hostname, node_name, project))
