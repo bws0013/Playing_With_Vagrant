@@ -19,6 +19,8 @@ args = parser.parse_args()
 hostname = node_name = project = path = None
 description = tags = username = overwrite = None
 
+print(args)
+
 # print args.overwrite
 
 if args.hostname:

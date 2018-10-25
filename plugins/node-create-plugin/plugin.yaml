@@ -1,6 +1,6 @@
 name: node-create-plugin
-version: 1.0.0
-rundeckPluginVersion: 1.0
+version: 1.0.1
+rundeckPluginVersion: 1.1
 author: Ben Smith
 date: Tue Oct 23 2018
 url: https://github.com/bws0013
@@ -12,7 +12,7 @@ providers:
     plugin-type: script
     script-interpreter: python -u
     script-file: hello.py
-    script-args: -n ${config.node_name} -o ${config.hostname} -u ${config.username} -p ${config.project_name} -d ${config.description} -t ${config.tags}
+    script-args: -n ${config.node_name} -o ${config.hostname} -u ${config.username} -p ${config.project_name} -d ${config.description} -t ${config.tags} -a ${config.path} -v ${config.overwrite}
     config:
       - name: node_name
         title: node_name
@@ -46,7 +46,13 @@ providers:
         title: tags
         description: "Split the tags with commas (no spaces allowed)"
         type: String
-        default: "Node"
+        default: "Node,Test"
+        required: true
+      - name: path
+        title: path
+        description: "The path of your resource folder/file"
+        type: String
+        default: "/var/rundeck/projects/b/etc/resources"
         required: true
       - name: overwrite
         title: overwrite
