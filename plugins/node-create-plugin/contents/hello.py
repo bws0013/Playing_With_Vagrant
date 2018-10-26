@@ -1,5 +1,14 @@
 import argparse
 import sys
+import os
+
+def path_state(path):
+    if not os.path.exists(path):
+        return "#"
+    if os.path.isfile(path):
+        return "f"
+    else:
+        return "d"
 
 parser = argparse.ArgumentParser(description='Create a node')
 # parser.add_argument('integers', metavar='N', type=int, nargs='+',
@@ -16,23 +25,24 @@ parser.add_argument("--overwrite", "-v", help="(true/false) Overwrite existing n
 
 args = parser.parse_args()
 
-hostname = node_name = project = path = None
-description = tags = username = overwrite = None
-
-print(args)
+# hostname = node_name = project = path = None
+# description = tags = username = overwrite = None
 
 # print args.overwrite
 
-if args.hostname:
-    hostname = args.hostname
-if args.node_name:
-    node_name = args.node_name
-if args.project:
-    project = args.project
+print path_state(args.path)
+
+# if args.hostname:
+#     hostname = args.hostname
+# if args.node_name:
+#     node_name = args.node_name
+# if args.project:
+#     project = args.project
 
 if not args.hostname or not args.node_name or not args.project or not args.overwrite:
     print("Hostname, Node name, Project name and Overwrite status are required, use -h for help")
     sys.exit(1)
+
 
 
 # else:
