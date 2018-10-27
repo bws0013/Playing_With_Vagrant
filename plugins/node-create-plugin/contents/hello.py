@@ -1,6 +1,7 @@
 import argparse
 import sys
 import os
+import create_node
 
 def path_state(path):
     if not os.path.exists(path):
@@ -9,6 +10,11 @@ def path_state(path):
         return "f"
     else:
         return "d"
+
+def exit_with_status(status, message):
+    print message
+    sys.exit(status)
+
 
 parser = argparse.ArgumentParser(description='Create a node')
 # parser.add_argument('integers', metavar='N', type=int, nargs='+',
@@ -21,31 +27,16 @@ parser.add_argument("--tags", "-t", help="(optional) Provide a comma separated l
 parser.add_argument("--username", "-u", help="(optional) Provide a user to login as (default is root)")
 parser.add_argument("--overwrite", "-v", help="(true/false) Overwrite existing node with same name (default: false)")
 
-
 args = parser.parse_args()
 
-if not args.hostname or not args.node_name or not args.path:
-    print("Hostname, Node name, and Project Path status are required, use -h for help")
-    sys.exit(1)
+# if not args.hostname or not args.node_name or not args.path:
+#     exit_with_status(1, "Hostname, Node name, and Project Path status are required, use -h for help")
 
-# print path_state(args.path)
-print args.tags
-
-# hostname = node_name = project = overwrite = None
-description = tags = username = overwrite = None
-
-if not args.description:
-    description = "A Rundeck node"
-if not args.tags:
-    tags = "rundeck,node"
-if not args.username:
-    username = "root"
-if not args.overwrite:
-    overwrite = "false"
-
-
-print("description: %s, tags: %s, username: %s, overwrite: %s" % (description, tags, username, overwrite))
-# print args.overwrite
+file_type = path_state(args.path)
+if file_type == "#":
+    exit_with_status(2, "File either doesn't exist or isn't in a readable location.")
+elif file_type == "d":
+    create_node.create_node_file_from_args(args)
 
 
 # if args.hostname:

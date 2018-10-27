@@ -1,0 +1,34 @@
+import os
+import sys
+
+def exit_with_status(status, message):
+    print message
+    sys.exit(status)
+
+def create_node_file_from_args(args):
+
+    file_name_to_check = args.path + "/" + args.node_name + ".yml"
+    if args.overwrite == "false" and check_if_file_exits(file_name_to_check) == True:
+        exit_with_status(3, "File exists and has not been set to be overwritten.")
+
+    node_text = get_node_template()
+    node_text.replace("@node_name@", args.node_name)
+    node_text.replace("@description@", args.description)
+    node_text.replace("@hostname@", args.hostname)
+    node_text.replace("@tags@", args.tags)
+    node_text.replace("@username@", args.username)
+
+def check_if_file_exits(path):
+    if os.path.isfile(path):
+        return True
+    else:
+        return False
+
+def get_node_template():
+    node_text = "@node_name@\n"
+    node_text += "\t@description@\n"
+    node_text += "\t@hostname@\n"
+    node_text += "\t@node_name@\n"
+    node_text += "\t@tags@\n"
+    node_text += "\t@username@\n"
+    return node_text
