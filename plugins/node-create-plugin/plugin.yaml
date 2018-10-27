@@ -24,42 +24,30 @@ providers:
         description: "This will be used to login, enter the ip if there is no hostname"
         type: String
         required: true
-      - name: username
-        title: username
-        description: "Provide a user to login as (default is root)"
-        type: String
-        default: "root"
-      - name: description
-        title: description
-        description: "Enter or don't for a default description"
-        type: String
-        default: "A node"
-      - name: tags
-        title: tags
-        description: "Split the tags with commas (no spaces allowed)"
-        type: String
-        default: "Node1,Test,hello"
       - name: path
         title: path
         description: "The path of your resource folder/file"
         type: String
         default: "/var/rundeck/projects/${job.project}/etc/resources"
         required: true
+      - name: username
+        title: username
+        description: "(optional) Provide a user to login as (default is root)"
+        type: String
+        default: "root"
+      - name: description
+        title: description
+        description: "(optional) Enter or don't for a default description"
+        type: String
+        default: "A node"
+      - name: tags
+        title: tags
+        description: "(optional) Split the tags with commas (no spaces allowed)"
+        type: String
+        default: "Node,Test,hello"
       - name: overwrite
         title: overwrite
-        description: "Overwrite node with same name"
+        description: "(optional) Overwrite node with same name"
         type: Select
         values: "true, false"
         default: "false"
-      # - name: osarch
-      #   title: architecture
-      #   description: "The node architecture"
-      #   type: String
-      #   default: "x86_64"
-      #   required: true
-      # - name: osname
-      #   title: operating_system
-      #   description: "The os of the node"
-      #   type: String
-      #   default: "Linux"
-      #   required: true

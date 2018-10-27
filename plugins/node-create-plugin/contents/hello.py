@@ -28,7 +28,8 @@ if not args.hostname or not args.node_name or not args.path:
     print("Hostname, Node name, and Project Path status are required, use -h for help")
     sys.exit(1)
 
-print path_state(args.path)
+# print path_state(args.path)
+print args.tags
 
 # hostname = node_name = project = overwrite = None
 description = tags = username = overwrite = None
@@ -43,7 +44,7 @@ if not args.overwrite:
     overwrite = "false"
 
 
-print description,tags,username,overwrite
+print("description: %s, tags: %s, username: %s, overwrite: %s" % (description, tags, username, overwrite))
 # print args.overwrite
 
 
