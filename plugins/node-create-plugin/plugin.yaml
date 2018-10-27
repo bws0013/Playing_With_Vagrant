@@ -12,7 +12,7 @@ providers:
     plugin-type: script
     script-interpreter: python -u
     script-file: hello.py
-    script-args: -n ${config.node_name} -o ${config.hostname} -u ${config.username} -p ${config.project_name} -d ${config.description} -t ${config.tags} -a ${config.path} -v ${config.overwrite}
+    script-args: -n ${config.node_name} -o ${config.hostname} -u ${config.username} -d ${config.description} -t ${config.tags} -p ${config.path} -v ${config.overwrite}
     config:
       - name: node_name
         title: node_name
@@ -29,30 +29,21 @@ providers:
         description: "Provide a user to login as (default is root)"
         type: String
         default: "root"
-        required: true
-      - name: project_name
-        title: project_name
-        description: "Enter the project of the node (default is current project)"
-        type: String
-        default: "${job.project}"
-        required: true
       - name: description
         title: description
-        description: "Required but not particularly important"
+        description: "Enter or don't for a default description"
         type: String
         default: "A node"
-        required: true
       - name: tags
         title: tags
         description: "Split the tags with commas (no spaces allowed)"
         type: String
-        default: "Node,Test"
-        required: true
+        default: "Node1,Test,hello"
       - name: path
         title: path
         description: "The path of your resource folder/file"
         type: String
-        default: "/var/rundeck/projects/b/etc/resources"
+        default: "/var/rundeck/projects/${job.project}/etc/resources"
         required: true
       - name: overwrite
         title: overwrite
@@ -60,7 +51,6 @@ providers:
         type: Select
         values: "true, false"
         default: "false"
-        required: true
       # - name: osarch
       #   title: architecture
       #   description: "The node architecture"
