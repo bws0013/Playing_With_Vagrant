@@ -15,14 +15,19 @@ def create_node_file_from_args(args):
     node_text = node_text.replace("@node_name@", "nodename: " + args.node_name)
     node_text = node_text.replace("@description@", "description: " + args.description)
     node_text = node_text.replace("@hostname@", "hostname: " + args.hostname)
-    node_text = node_text.replace("@tags@", "tags: " + args.tags)
     node_text = node_text.replace("@username@", "username: " + args.username)
+    node_text = node_text.replace("@tags@", "tags: " + args.tags)
+
     # print file_name_to_check
     # print node_text
 
     f = open(file_name_to_check, "w")
     f.write(node_text)
     f.close()
+    if check_if_file_exits(file_name_to_check):
+        return True
+    else:
+        return False
 
 def check_if_file_exits(path):
     if os.path.isfile(path):
