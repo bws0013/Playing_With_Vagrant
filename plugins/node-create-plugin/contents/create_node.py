@@ -12,11 +12,17 @@ def create_node_file_from_args(args):
         exit_with_status(3, "File exists and has not been set to be overwritten.")
 
     node_text = get_node_template()
-    node_text.replace("@node_name@", args.node_name)
-    node_text.replace("@description@", args.description)
-    node_text.replace("@hostname@", args.hostname)
-    node_text.replace("@tags@", args.tags)
-    node_text.replace("@username@", args.username)
+    node_text = node_text.replace("@node_name@", "nodename: " + args.node_name)
+    node_text = node_text.replace("@description@", "description: " + args.description)
+    node_text = node_text.replace("@hostname@", "hostname: " + args.hostname)
+    node_text = node_text.replace("@tags@", "tags: " + args.tags)
+    node_text = node_text.replace("@username@", "username: " + args.username)
+    # print file_name_to_check
+    # print node_text
+
+    f = open(file_name_to_check, "w")
+    f.write(node_text)
+    f.close()
 
 def check_if_file_exits(path):
     if os.path.isfile(path):
@@ -26,9 +32,9 @@ def check_if_file_exits(path):
 
 def get_node_template():
     node_text = "@node_name@\n"
-    node_text += "\t@description@\n"
-    node_text += "\t@hostname@\n"
-    node_text += "\t@node_name@\n"
-    node_text += "\t@tags@\n"
-    node_text += "\t@username@\n"
+    node_text += "  @description@\n"
+    node_text += "  @hostname@\n"
+    node_text += "  @node_name@\n"
+    node_text += "  @tags@\n"
+    node_text += "  @username@\n"
     return node_text
