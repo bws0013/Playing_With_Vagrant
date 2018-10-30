@@ -2,6 +2,7 @@ import argparse
 import sys
 import os
 import create_node
+import add_node
 
 def path_state(path):
     if not os.path.exists(path):
@@ -37,7 +38,8 @@ if file_type == "#":
     exit_with_status(2, "File either doesn't exist or isn't in a readable location.")
 elif file_type == "d":
     create_node.create_node_file_from_args(args)
-
+elif file_type == "f":
+    add_node.world()
 
 # if args.hostname:
 #     hostname = args.hostname
