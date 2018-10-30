@@ -12,6 +12,18 @@ def path_state(path):
     else:
         return "d"
 
+def get_file_extension(path):
+    elements = path.split(".")
+    extension = elements[len(elements) - 1].lower()
+    if extension == "json":
+        return "json"
+    elif extension == "yml":
+        return "yml"
+    elif extension == "xml":
+        return "xml"
+    else:
+        exit_with_status(5, "The following file extension isn't recognized: " + extension)
+
 def exit_with_status(status, message):
     print message
     sys.exit(status)
@@ -39,7 +51,9 @@ if file_type == "#":
 elif file_type == "d":
     create_node.create_node_file_from_args(args)
 elif file_type == "f":
-    add_node.world()
+    extension = get_file_extension(args.path)
+    if extension == "xml":
+        add_node.xml_add(args)
 
 # if args.hostname:
 #     hostname = args.hostname

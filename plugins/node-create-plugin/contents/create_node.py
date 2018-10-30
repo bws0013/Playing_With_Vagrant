@@ -40,7 +40,7 @@ def check_if_file_exits(path):
 
 def get_node_template():
     node_text = "---\n"
-    node_text += "@node_name@\n"
+    node_text += "@@\n"
     node_text += "  @description@\n"
     node_text += "  @hostname@\n"
     node_text += "  @node_name@\n"
